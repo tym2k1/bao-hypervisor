@@ -13,7 +13,7 @@ struct config config = {
     .vmlist_size = 2,
     .vmlist = (struct vm_config[]) {
         {
-            .image = VM_IMAGE_LOADED(0x00020000, 0x00020000, 0xD00),
+            .image = VM_IMAGE_LOADED(0x00020000, 0x00020000, 0x8000),
             .entry = 0x00020000,
             .platform = {
                 .cpu_num = 1,
@@ -28,7 +28,7 @@ struct config config = {
                         .size = 0x10000
                     }
                 },
-                .dev_num = 2,
+                .dev_num = 4,
                 .devs =  (struct vm_dev_region[]) {
                     {
                         /* Flexcomm Interface 3 (USART3) */
@@ -39,10 +39,22 @@ struct config config = {
                         .interrupts = (irqid_t[]) {17+16}
                     },
                     {
-                        /* SYSCON + IOCON */
+                        /* SYSCON + IOCON + PINT + SPINT */
                         .pa = 0x40000000,
                         .va = 0x40000000,
-                        .size = 0x2000,
+                        .size = 0x5000,
+                    },
+                    {
+                        /* ANALOG */
+                        .pa = 0x40013000,
+                        .va = 0x40013000,
+                        .size = 0x1000,
+                    },
+                    {
+                        /* POWER MGM */
+                        .pa = 0x40020000,
+                        .va = 0x40020000,
+                        .size = 0x1000,
                     },
                 },
                 .ipc_num = 1,
@@ -58,9 +70,9 @@ struct config config = {
             },
         },
         {
-            /* ZEPHYR VM */
-            .image = VM_IMAGE_LOADED(0x00040000, 0x00040000, 0x8000),
-            .entry = 0x00040bd0,
+            /* ZEPHYR 2 VM */
+            .image = VM_IMAGE_LOADED(0x00060000, 0x00060000, 0x8000),
+            .entry = 0x00060bbc,
             .platform = {
                 .cpu_num = 1,
                 .region_num = 2,
@@ -70,7 +82,7 @@ struct config config = {
                         .size = 0x10000
                     },
                     {
-                        .base = 0x00040000,
+                        .base = 0x00060000,
                         .size = 0x10000
                     }
                 },
