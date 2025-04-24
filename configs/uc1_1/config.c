@@ -21,7 +21,7 @@ struct config config = {
                 .regions =  (struct vm_mem_region[]) {
                     {
                         .base = 0x20010000, //SRAM1
-                        .size = 0x7000
+                        .size = 0x20000
                     },
                     {
                         .base = 0x00020000,
@@ -78,8 +78,8 @@ struct config config = {
                 .region_num = 2,
                 .regions =  (struct vm_mem_region[]) {
                     {
-                        .base = 0x20020000, //SRAM1
-                        .size = 0x10000
+                        .base = 0x20030000, //SRAM1
+                        .size = 0x20000
                     },
                     {
                         .base = 0x00060000,
