@@ -118,8 +118,8 @@ endif
 endif
 
 
-build_dir:=$(cur_dir)/build/$(PLATFORM)/$(CONFIG)
-bin_dir:=$(cur_dir)/bin/$(PLATFORM)/$(CONFIG)
+build_dir?=$(cur_dir)/build/$(PLATFORM)/$(CONFIG)
+bin_dir?=$(cur_dir)/bin/$(PLATFORM)/$(CONFIG)
 directories:=$(build_dir) $(bin_dir)
 
 src_dirs+=$(cpu_arch_dir) $(lib_dir) $(core_dir) $(core_mem_prot_dir) \
