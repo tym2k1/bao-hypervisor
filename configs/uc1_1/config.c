@@ -14,7 +14,10 @@ struct config config = {
     .vmlist = (struct vm_config[]) {
         {
             .image = VM_IMAGE_LOADED(0x00020000, 0x00020000, 0x8000),
-            .entry = 0x00020000,
+            /* Hypervisor requires correct _start adress of binary.
+             * With Zephyr these can differ so need to be substituted at build time.
+             */
+            .entry = 0x00020000, /* @SUBST_ENTRY_ADDR:GUEST_VM */
             .platform = {
                 .cpu_num = 1,
                 .region_num = 2,
@@ -72,7 +75,10 @@ struct config config = {
         {
             /* ZEPHYR 2 VM */
             .image = VM_IMAGE_LOADED(0x00060000, 0x00060000, 0x8000),
-            .entry = 0x00060bbc,
+            /* Hypervisor requires correct _start adress of binary.
+             * With Zephyr these can differ so need to be substituted at build time.
+             */
+            .entry = 0x00060000, /* @SUBST_ENTRY_ADDR:PUF_VM */
             .platform = {
                 .cpu_num = 1,
                 .region_num = 2,
